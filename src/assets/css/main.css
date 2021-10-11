@@ -10,3 +10,8 @@
 .text-gray-app{
     color: #828282;
 }
+.universiti-div{
+    max-height: 450px;
+    overflow: auto;
+    overflow-y: scroll;
+}
