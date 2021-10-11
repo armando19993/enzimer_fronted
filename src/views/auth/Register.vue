@@ -1,81 +1,93 @@
 <template>
   <div class="background-responsive" :style="{'background-image':'url(auth.jpg)'}">
+    <v-form v-model="valid">
         <v-container>
             <v-row id="row-main"
                 align="center"
                 justify="center"
             >
-                <v-col
-                    cols="12"
-                    md="7"
-                    lg="6"
-                >
-                    <v-card class="px-15 py-5 rounded-lg">
-                        <v-form v-model="valid">
+                    <!-- Datos Usuarios -->
+                    <v-col
+                        v-show="step == 1"
+                        cols="12"
+                        md="7"
+                        lg="6"
+                    >
+                        <v-card class="px-15 py-5 rounded-lg">
                             <v-card-text>
-                                <!-- Datos Usuarios -->
-                                <div v-show="step == 1">
-                                    <p class="text-center teal--text font-weight-bold text-h5 pt-5">Nuevo usuario</p>
-                                    <p class="text-center gray--text caption mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    <v-text-field
-                                        class="my-4"
-                                        label="Nombres"
-                                        required
-                                        v-model="user.firstname"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        class="my-4"
-                                        label="Apellidos"
-                                        required
-                                        v-model="user.lastname"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        class="my-4"
-                                        :rules="emailRules"
-                                        label="Correo"
-                                        required
-                                        v-model="user.email"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        class="my-4"
-                                        label="Celular"
-                                        required
-                                        v-model="user.phone"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        class="my-4"
-                                        :rules="passwordRules"
-                                        label="Contraseña"
-                                        required
-                                        v-model="user.password"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        class="my-4"
-                                        :rules="passwordRules"
-                                        label="Confirmar contraseña"
-                                        required
-                                        v-model="user.password_confirmation"
-                                    ></v-text-field>
-                                    <v-checkbox
-                                        class="gray--text mt-n2 float-left"
-                                        color="teal"
-                                        v-model="user.subscribe"
-                                    ></v-checkbox>
-                                    <p class="gray--text caption mb-4 float-left">Quieres recibir ofertas y notificaciones de parte de <span class="teal--text caption mb-4 font-weight-medium">ENZIMER</span></p>
-                                    <!-- link auxiliares y boton-->
-                                    <v-btn
-                                        block
-                                        color="teal"
-                                        large
-                                        class="my-2"
-                                        :disabled="!valid"
-                                        @click="checkStep1"
-                                    >
-                                            <span class="text-capitalize white--text" >Continuar</span>
-                                    </v-btn>
+                                <div >
+                                                <p class="text-center teal--text font-weight-bold text-h5 pt-5">Nuevo usuario</p>
+                                                <p class="text-center gray--text caption mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                <v-text-field
+                                                    class="my-4"
+                                                    label="Nombres"
+                                                    required
+                                                    v-model="user.firstname"
+                                                ></v-text-field>
+                                                <v-text-field
+                                                    class="my-4"
+                                                    label="Apellidos"
+                                                    required
+                                                    v-model="user.lastname"
+                                                ></v-text-field>
+                                                <v-text-field
+                                                    class="my-4"
+                                                    :rules="emailRules"
+                                                    label="Correo"
+                                                    required
+                                                    v-model="user.email"
+                                                ></v-text-field>
+                                                <v-text-field
+                                                    class="my-4"
+                                                    label="Celular"
+                                                    required
+                                                    v-model="user.phone"
+                                                ></v-text-field>
+                                                <v-text-field
+                                                    class="my-4"
+                                                    :rules="passwordRules"
+                                                    label="Contraseña"
+                                                    required
+                                                    v-model="user.password"
+                                                ></v-text-field>
+                                                <v-text-field
+                                                    class="my-4"
+                                                    :rules="passwordRules"
+                                                    label="Confirmar contraseña"
+                                                    required
+                                                    v-model="user.password_confirmation"
+                                                ></v-text-field>
+                                                <v-checkbox
+                                                    class="gray--text mt-n2 float-left"
+                                                    color="teal"
+                                                    v-model="user.subscribe"
+                                                ></v-checkbox>
+                                                <p class="gray--text caption mb-4 float-left">Quieres recibir ofertas y notificaciones de parte de <span class="teal--text caption mb-4 font-weight-medium">ENZIMER</span></p>
+                                                <!-- link auxiliares y boton-->
+                                                <v-btn
+                                                    block
+                                                    color="teal"
+                                                    large
+                                                    class="my-2"
+                                                    :disabled="!valid"
+                                                    @click="checkStep1"
+                                                >
+                                                        <span class="text-capitalize white--text" >Continuar</span>
+                                                </v-btn>
                                 </div>
-                                <!-- Datos Universidad -->
-                                <div v-show="step == 2">
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+                    <!-- Datos Universidad -->
+                    <v-col
+                        cols="12"
+                        md="7"
+                        lg="6"
+                        v-show="step == 2"
+                    >
+                        <v-card class="px-15 py-5 rounded-lg">
+                            <v-card-text>
+                                <div>
                                     <p class="text-center teal--text font-weight-bold text-h5 pt-5">Seleccionar universidad</p>
                                     <p class="text-center gray--text caption mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                     <v-text-field
@@ -83,7 +95,7 @@
                                         label="Buscar Universidad"
                                         color="teal"
                                     ></v-text-field>
-                                    <v-radio-group v-model="user.university" class="universiti-div mt-2">
+                                    <v-radio-group v-model="user.university" class="universiti-div mt-2 mx-2">
                                         <v-radio
                                             color="teal"
                                             class="my-4" 
@@ -106,11 +118,102 @@
                                     </v-btn>
                                 </div>
                             </v-card-text>
-                        </v-form>
-                    </v-card>
-                </v-col>
+                        </v-card>
+                    </v-col>
+                    <!-- Datos Carrera -->
+                    <v-col
+                        cols="12"
+                        md="7"
+                        lg="6"
+                        v-show="step == 3"
+                    >
+                        <v-card class="px-15 py-5 rounded-lg">
+                            <v-card-text>
+                                <div>
+                                    <p class="text-center teal--text font-weight-bold text-h5 pt-5">Seleccionar Carrera</p>
+                                    <p class="text-center gray--text caption mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <div class="universiti-div">
+                                        <v-radio-group v-model="user.career" class="mx-2 mt-2">
+                                            <div 
+                                                v-for="(item,index) in 4"
+                                                :key="index"
+                                            >
+                                                <p class="h6 teal--text font-weight-bold"><v-icon large color="teal">mdi-bank</v-icon> Carrera {{index}}</p>
+                                                <hr class="gray">
+                                                <v-radio
+                                                    color="teal"
+                                                    class="my-4" 
+                                                    v-for="(item,index) in 4"
+                                                    :key="index"
+                                                    :label="'carrera ' + index"
+                                                    :value="item.name"
+                                                ></v-radio>
+                                            </div>
+                                        </v-radio-group>
+                                    </div>
+                                    <!-- link auxiliares y boton-->
+                                    <v-btn
+                                        block
+                                        color="teal"
+                                        large
+                                        class="my-2"
+                                        :disabled="!user.career"
+                                        @click="checkStep3"
+                                    >
+                                            <span class="text-capitalize white--text" >Continuar</span>
+                                    </v-btn>
+                                </div>
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+                    <!-- Datos Pagos -->
+                    <v-col
+                        cols="12"
+                        v-show="step == 4"
+                    >
+                        <v-row>
+                            <v-col
+                                cols="12"
+                                md="6"
+                                lg="3"
+                                v-for="item in 4" 
+                                :key="item"
+                            >
+                                <v-card class="rounded-lg">
+                                    <v-card-title class="teal py-10">
+                                        <span class="text-h5 mx-auto white--text font-weight-bold">Plan 1 GB</span>
+                                    </v-card-title>
+                                    <v-card-title class="py-10">
+                                        <span class="text-h5 mx-auto teal--text font-weight-bold">$ 1 <small class="caption">Usd / Año</small></span>
+                                    </v-card-title>
+                                    <v-card-text class="white">
+                                        <v-list-item>
+                                            <v-list-item-content>
+                                                <v-list-item-title class="my-3" v-for="item in 5" :key="item">
+                                                    <v-icon color="teal">mdi-wifi</v-icon> 
+                                                    Lorem ipsum
+                                                    <span class="teal--text">{{item}}GB</span>
+                                                </v-list-item-title>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </v-card-text>
+                                    <v-card-actions>
+                                        <v-btn 
+                                            block 
+                                            color="teal" 
+                                            class="py-6 text-capitalize" 
+                                            dark
+                                            @click="selectPlan(item)"
+                                        >
+                                            Adquirir este plan</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-col>
             </v-row>
         </v-container>
+    </v-form>
   </div>
 </template>
 
@@ -120,7 +223,7 @@
     data: () => ({
         /* Formulario */
         valid: false,
-        step:1,
+        step:3,
         /* Universidades */
         universities:[
             {name : 'universidad1'},
@@ -142,7 +245,8 @@
             password:"",
             password_confirmation:"",
             subscribe:"",
-            university:null
+            university:null,
+            career:null
         },
         /* Reglas Campos */
         passwordRules: [
@@ -170,9 +274,19 @@
         },
         checkStep2()
         {
-            if(this.valid){
+            if(this.user.universities){
                 this.step = 3
             } 
+        },
+        checkStep3()
+        {
+            if(this.user.career){
+                this.step = 4
+            } 
+        },
+        selectPlan(item)
+        {
+            alert("plan seleccionado "+item)
         }
     }
   }
