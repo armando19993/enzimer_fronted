@@ -1,0 +1,12 @@
+.background-responsive
+{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.text-green-app{
+    color: #029B99;
+}
+.text-gray-app{
+    color: #828282;
+}
