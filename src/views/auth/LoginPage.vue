@@ -85,7 +85,7 @@
 
 <script>
   export default {
-    name:'Home',
+    name:'LoginPage',
     data: () => ({
         /* Formulario */
         valid: false,

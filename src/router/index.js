@@ -22,12 +22,24 @@ const routes = [
   {
     path: '/login',
     name:'Login',
-    component: () => import('../views/auth/Login')
+    component: () => import('../views/auth/LoginPage')
   },
   {
     path: '/register',
     name:'Register',
-    component: () => import('../views/auth/Register')
+    component: () => import('../views/auth/RegisterPage')
+  },
+  /* Test */
+  {
+    path: '/tests',
+    name:'IndexTestPage',
+    component: () => import('../views/tests/IndexTestPage')
+  },
+  /* Preguntas */
+  {
+    path: '/questions',
+    name:'IndexTestPage',
+    component: () => import('../views/questions/IndexQuestionPage')
   }
 ]
 

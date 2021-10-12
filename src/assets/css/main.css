@@ -1,3 +1,16 @@
+#app > div.v-application--wrap > nav
+{
+    min-width: 96px!important;
+}
+#app .app-margin-auto
+{
+    margin: auto!important;
+}
+.questions-box{
+    max-height: 800px;
+    overflow: auto;
+    overflow-y: scroll;
+}
 .background-responsive
 {
     background-repeat: no-repeat;

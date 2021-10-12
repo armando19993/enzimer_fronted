@@ -225,7 +225,7 @@
 <script>
 import rulesFile from '../../rules/rules'
   export default {
-    name:'Register',
+    name:'RegisterPage',
     mounted()
     {
         var scriptTag = document.createElement("script")
