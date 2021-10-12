@@ -16,64 +16,69 @@
                         <v-card class="px-15 py-5 rounded-lg">
                             <v-card-text>
                                 <div >
-                                                <p class="text-center teal--text font-weight-bold text-h5 pt-5">Nuevo usuario</p>
-                                                <p class="text-center gray--text caption mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                                <v-text-field
-                                                    class="my-4"
-                                                    label="Nombres"
-                                                    required
-                                                    v-model="user.firstname"
-                                                ></v-text-field>
-                                                <v-text-field
-                                                    class="my-4"
-                                                    label="Apellidos"
-                                                    required
-                                                    v-model="user.lastname"
-                                                ></v-text-field>
-                                                <v-text-field
-                                                    class="my-4"
-                                                    :rules="emailRules"
-                                                    label="Correo"
-                                                    required
-                                                    v-model="user.email"
-                                                ></v-text-field>
-                                                <v-text-field
-                                                    class="my-4"
-                                                    label="Celular"
-                                                    required
-                                                    v-model="user.phone"
-                                                ></v-text-field>
-                                                <v-text-field
-                                                    class="my-4"
-                                                    :rules="passwordRules"
-                                                    label="Contraseña"
-                                                    required
-                                                    v-model="user.password"
-                                                ></v-text-field>
-                                                <v-text-field
-                                                    class="my-4"
-                                                    :rules="passwordRules"
-                                                    label="Confirmar contraseña"
-                                                    required
-                                                    v-model="user.password_confirmation"
-                                                ></v-text-field>
-                                                <v-checkbox
-                                                    class="gray--text mt-n2 float-left"
-                                                    color="teal"
-                                                    v-model="user.subscribe"
-                                                ></v-checkbox>
-                                                <p class="gray--text caption mb-4 float-left">Quieres recibir ofertas y notificaciones de parte de <span class="teal--text caption mb-4 font-weight-medium">ENZIMER</span></p>
-                                                <!-- link auxiliares y boton-->
-                                                <v-btn
-                                                    block
-                                                    color="teal"
-                                                    large
-                                                    class="my-2"
-                                                    :disabled="!valid"
-                                                    @click="checkStep1"
-                                                >
-                                                        <span class="text-capitalize white--text" >Continuar</span>
-                                                </v-btn>
+                                    <p class="text-center teal--text font-weight-bold text-h5 pt-5">Nuevo usuario</p>
+                                    <p class="text-center gray--text caption mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <v-text-field
+                                        class="my-4"
+                                        label="Nombres"
+                                        required:ripple="false"
+                                        :rules="validations.text"
+                                        v-model="user.firstname"
+                                    ></v-text-field>
+                                    <v-text-field
+                                        class="my-4"
+                                        label="Apellidos"
+                                        required
+                                        :rules="validations.text"
+                                        v-model="user.lastname"
+                                    ></v-text-field>
+                                    <v-text-field
+                                        class="my-4"
+                                        :rules="validations.email"
+                                        label="Correo"
+                                        required
+                                        v-model="user.email"
+                                    ></v-text-field>
+                                    <v-text-field
+                                        class="my-4"
+                                        label="Celular"
+                                        required
+                                        :rules="validations.text"
+                                        v-model="user.phone"
+                                    ></v-text-field>
+                                    <v-text-field
+                                        class="my-4"
+                                        :rules="validations.password"
+                                        label="Contraseña"
+                                        type="password"
+                                        required
+                                        v-model="user.password"
+                                    ></v-text-field>
+                                    <v-text-field
+                                        class="my-4"
+                                        :rules="[passwordConfirmationRule]"
+                                        label="Confirmar contraseña"
+                                        required
+                                        type="password"
+                                        v-model="user.password_confirmation"
+                                    ></v-text-field>
+                                    <v-checkbox
+                                        class="gray--text mt-n2 float-left"
+                                        color="teal"
+                                        v-model="user.subscribe"
+                                    ></v-checkbox>
+                                    <p class="gray--text caption mb-4 float-left">Quieres recibir ofertas y notificaciones de parte de <span class="teal--text caption mb-4 font-weight-medium">ENZIMER</span></p>
+                                    <!-- link auxiliares y boton-->
+                                    <v-btn
+                                        block
+                                        color="teal"
+                                        large
+                                        class="my-2"
+                                        :disabled="!valid"
+                                        @click="checkStep1"
+                                    >
+                                            <span class="text-capitalize white--text" >Continuar</span>
+                                    </v-btn>
                                 </div>
                             </v-card-text>
                         </v-card>
@@ -218,12 +223,19 @@
 </template>
 
 <script>
+import rulesFile from '../../rules/rules'
   export default {
     name:'Register',
+    mounted()
+    {
+        var scriptTag = document.createElement("script")
+        scriptTag.src = "https://checkout.culqi.com/js/v3"
+        document.getElementsByTagName('head')[0].appendChild(scriptTag)
+    },
     data: () => ({
         /* Formulario */
         valid: false,
-        step:3,
+        step:4,
         /* Universidades */
         universities:[
             {name : 'universidad1'},
@@ -248,21 +260,22 @@
             university:null,
             career:null
         },
+        password_check:true,
         /* Reglas Campos */
-        passwordRules: [
-            v => !!v || 'Contraseña requerida',
-            v => v.length >= 8 || 'Contraseña debe tener míminimo de 8 caracteres',
-        ],
-        emailRules: [
-            v => !!v || 'El Correo es requerido',
-            v => /.+@.+/.test(v) || 'No es una direccion de correo valido',
-        ],
+        validations: {
+            email:[rulesFile.email(),rulesFile.required()],
+            text:[rulesFile.required()],
+            password:[rulesFile.required(),rulesFile.minText(8)],
+        },
     }),
     computed: {
         universitiesSearch() {
             return this.universities.filter((university) => {
                 return university.name.toLowerCase().includes(this.university_filter.toLowerCase());
             });
+        },
+        passwordConfirmationRule() {
+            return () => (this.user.password === this.user.password_confirmation) || 'Contraseñas no coinciden'
         }
     },
     methods:{
@@ -286,7 +299,21 @@
         },
         selectPlan(item)
         {
-            alert("plan seleccionado "+item)
+            console.log(item)
+            this.culqiAPI()
+        },
+        culqiAPI()
+        {
+            // Configura tu llave pública
+            window.Culqi.publicKey = "sk_test_d8d617d26c11f288"
+            // Configura tu Culqi Checkout
+            window.Culqi.settings({
+                title: 'Culqi Pago Plan',
+                currency: 'PEN',
+                description: 'Pruebas Angel',
+                amount: 5000
+            });
+            window.Culqi.open()
         }
     }
   }
