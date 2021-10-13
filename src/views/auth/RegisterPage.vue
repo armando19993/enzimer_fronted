@@ -20,6 +20,8 @@
                                     <p class="text-center gray--text caption mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                     <v-text-field
                                         class="my-4"
+                                        outlined
+                                        color="teal"
                                         label="Nombres"
                                         required:ripple="false"
                                         :rules="validations.text"
@@ -27,6 +29,8 @@
                                     ></v-text-field>
                                     <v-text-field
                                         class="my-4"
+                                        outlined
+                                        color="teal"
                                         label="Apellidos"
                                         required
                                         :rules="validations.text"
@@ -34,6 +38,8 @@
                                     ></v-text-field>
                                     <v-text-field
                                         class="my-4"
+                                        outlined
+                                        color="teal"
                                         :rules="validations.email"
                                         label="Correo"
                                         required
@@ -41,6 +47,8 @@
                                     ></v-text-field>
                                     <v-text-field
                                         class="my-4"
+                                        outlined
+                                        color="teal"
                                         label="Celular"
                                         required
                                         :rules="validations.text"
@@ -48,6 +56,8 @@
                                     ></v-text-field>
                                     <v-text-field
                                         class="my-4"
+                                        outlined
+                                        color="teal"
                                         :rules="validations.password"
                                         label="Contraseña"
                                         type="password"
@@ -56,6 +66,8 @@
                                     ></v-text-field>
                                     <v-text-field
                                         class="my-4"
+                                        outlined
+                                        color="teal"
                                         :rules="[passwordConfirmationRule]"
                                         label="Confirmar contraseña"
                                         required
@@ -77,7 +89,7 @@
                                         :disabled="!valid"
                                         @click="checkStep1"
                                     >
-                                            <span class="text-capitalize white--text" >Continuar</span>
+                                        <span class="text-capitalize white--text" >Continuar</span>
                                     </v-btn>
                                 </div>
                             </v-card-text>
@@ -98,6 +110,7 @@
                                     <v-text-field
                                         v-model="university_filter"
                                         label="Buscar Universidad"
+                                        outlined
                                         color="teal"
                                     ></v-text-field>
                                     <v-radio-group v-model="user.university" class="universiti-div mt-2 mx-2">
@@ -235,7 +248,7 @@ import rulesFile from '../../rules/rules'
     data: () => ({
         /* Formulario */
         valid: false,
-        step:4,
+        step:1,
         /* Universidades */
         universities:[
             {name : 'universidad1'},

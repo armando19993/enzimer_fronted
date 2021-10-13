@@ -3,51 +3,8 @@
       <v-app-bar color="grey lighten-3" class="mb-4 mt-0" elevation="0">  
         <h2 class="text--grey">
           <v-icon color="teal" large>mdi-arrow-right</v-icon>
-          Tests
+          Cards
         </h2>
-        <v-spacer></v-spacer>
-        <v-btn 
-          color="grey lighten-3"
-          elevation="0"
-        >
-          Cursos: <span class="teal--text">21</span>
-        </v-btn>
-        <v-btn 
-          color="grey lighten-3"
-          elevation="0"
-        >
-          Temas: <span class="teal--text">61</span>
-        </v-btn>
-        <v-text-field
-          class="mx-2"
-          style="max-width:200px!important;max-height:70px"
-          outlined
-          min="0"
-          type="number"
-        >
-          <template v-slot:append-outer>
-            <v-tooltip
-              bottom
-            >
-              <template v-slot:activator="{ on }">
-                <v-btn 
-                  elevation="0" 
-                  color="grey lighten-3" 
-                  v-on="on">/ 200
-                  <v-icon>mdi-information</v-icon>
-                </v-btn> 
-              </template>
-              ¿Cuantas preguntas desea responder?
-            </v-tooltip>
-          </template>
-        </v-text-field>
-        <v-btn 
-          color="teal lighten-1"
-          dark
-          elevation="0"
-        >
-          Generar Test
-        </v-btn>
       </v-app-bar>
       <v-row>
         <v-col cols="12" md="6" lg="4">
@@ -105,6 +62,7 @@
               </v-simple-table>
             </v-card-text>
           </v-card>
+          <v-btn class="float-right my-4" dark color="teal">Seleccionar</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -112,7 +70,7 @@
 
 <script>
   export default {
-    name: 'IndexTestPage',
+    name: 'IndexCardPage',
     data: () => ({
       /* cursos y temas */
       themes: [

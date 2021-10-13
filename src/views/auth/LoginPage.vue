@@ -18,6 +18,8 @@
                                 <!-- inputs -->
                                 <v-text-field
                                     class="my-4"
+                                    outlined
+                                    color="teal"
                                     name="login.username"
                                     :rules="emailRules"
                                     label="Correo electronico"
@@ -25,6 +27,8 @@
                                 ></v-text-field>
                                 <v-text-field
                                     class="my-4"
+                                    outlined
+                                    color="teal"
                                     name="login.password"
                                     :rules="passwordRules"
                                     label="Contraseña"

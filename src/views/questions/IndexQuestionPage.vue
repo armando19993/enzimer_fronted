@@ -27,7 +27,7 @@
             <v-card-text>
               <v-row v-for="(item,index) in 4" :key="index" class="my-1" :class="index == 0 ? 'grey darken-3 rounded-lg' : '' ">
                 <v-col 
-                  class="teal text-uppercase rounded-lg text-center" 
+                  class="teal text-uppercase rounded-lg text-center py-16" 
                   cols="2"
                 >
                   <p class="my-5 h2"><v-icon>mdi-flask</v-icon></p>
@@ -42,7 +42,7 @@
                       v-for="(item,index) in 16" :key="index"
                       cols="3"
                     >
-                      <p :class="item < 10 ? 'green' : 'red' " class="my-0 text-center rounded-lg py-2 px-0">{{item+1}}</p>
+                      <p style="width:50px;height:50px"  :class="item < 10 ? 'green' : 'red' " class="my-0 text-center rounded-lg py-4 px-0">{{item+1}}</p>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -69,7 +69,7 @@
                   <span class="white-text" style="color:white">Puedes conocer más</span>
                 </v-card-title>
                 <v-card-text class="pa-5">
-                  <p v-for="item in 3" :key="item" class="red-text">- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, minus?</p>
+                  <p v-for="item in 3" :key="item">- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, minus?</p>
                 </v-card-text>
               </v-card>
             </v-card-text>

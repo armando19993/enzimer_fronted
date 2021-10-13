@@ -40,7 +40,35 @@ const routes = [
     path: '/questions',
     name:'IndexTestPage',
     component: () => import('../views/questions/IndexQuestionPage')
-  }
+  },
+  /* Mi perfil */
+  {
+    path: '/profile',
+    name:'ProfilePage',
+    component: () => import('../views/profile/ProfilePage')
+  },
+  /* Flash Cards */
+  {
+    path: '/flashcards',
+    name:'IndexFlashCardPage',
+    component: () => import('../views/flashcards/IndexFlashcardPage')
+  },
+  {
+    path: '/flashcards/show',
+    name:'ShowFlashCardPage',
+    component: () => import('../views/flashcards/ShowFlashcardPage')
+  },
+  {
+    path: '/flashcards/finish',
+    name:'FinishFlashCardPage',
+    component: () => import('../views/flashcards/FinishFlashcardPage')
+  },
+  /* Flash Cards */
+  {
+    path: '/cards',
+    name:'IndexCardPage',
+    component: () => import('../views/cards/IndexCardPage')
+  },
 ]
 
 const router = new VueRouter({
