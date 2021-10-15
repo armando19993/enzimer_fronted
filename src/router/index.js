@@ -29,6 +29,12 @@ const routes = [
     name:'Register',
     component: () => import('../views/auth/RegisterPage')
   },
+  /* Dashboard */
+  {
+    path: '/dashboard',
+    name:'DashboardPage',
+    component: () => import('../views/dashboard/DashboardPage')
+  },
   /* Test */
   {
     path: '/tests',
@@ -38,7 +44,7 @@ const routes = [
   /* Preguntas */
   {
     path: '/questions',
-    name:'IndexTestPage',
+    name:'IndexQuestionPage',
     component: () => import('../views/questions/IndexQuestionPage')
   },
   /* Mi perfil */
@@ -68,6 +74,12 @@ const routes = [
     path: '/cards',
     name:'IndexCardPage',
     component: () => import('../views/cards/IndexCardPage')
+  },
+  /* Flash Cards */
+  {
+    path: '/criamf',
+    name:'IndexCriamfPage',
+    component: () => import('../views/criamf/IndexCriamfPage')
   },
 ]
 
