@@ -1,3 +1,25 @@
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #009688 #ededed;
+}
+
+/* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ededed;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #009688;
+    border-radius: 5px;
+    border: 0px none #ffffff;
+}
+/* ===== Scrollbar CSS ===== */
 #app > div.v-application--wrap > nav
 {
     min-width: 96px!important;
@@ -5,6 +27,53 @@
 #app .app-margin-auto
 {
     margin: auto!important;
+}
+.box-date
+{
+    padding: 40px 0px;
+    margin: auto;
+    height: 120px;
+}
+.box-blue
+{
+    background-color: #f7f7fe;
+    border: solid 1px ;
+    border-color: #aeaff7;
+}
+.box-blue-dark
+{
+    background-color: #f3f6f7;
+    border: solid 1px ;
+    border-color: #467b8c;
+}
+.box-grey
+{
+    border: solid 1px;
+    border-color: #e4e3e9!important;
+}
+.box-orange
+{
+    background-color: #fefaf6;
+    border: solid 1px;
+    border-color: #f9d5b6!important;
+}
+.box-red
+{
+    background-color: #fef7f7;
+    border: solid 1px ;
+    border-color: #f39696;
+}
+.bg-blue-dark-app
+{
+    background-color: #0d0737!important;
+}
+.text-grey-dark
+{
+    color: #3e6477
+}
+.text-blue-app
+{
+    color: #0d0737;
 }
 .questions-box{
     max-height: 800px;
