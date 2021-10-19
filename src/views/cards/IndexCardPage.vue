@@ -8,13 +8,13 @@
       </v-app-bar>
       <v-row>
         <v-col cols="12" md="6" lg="4">
-          <v-card class="questions-box grey lighten-2 rounded-lg"  elevation="0">
+          <v-card class="questions-box grey lighten-2 rounded"  elevation="0">
             <v-card-title primary-title>
               Cursos
             </v-card-title>
             <v-card-text>
               <v-list-item v-for="item in 10" :key="item">
-                <v-list-item-content class="px-2" :class="item == 3 ? 'teal rounded-lg white--text' : '' ">
+                <v-list-item-content class="px-2" :class="item == 3 ? 'teal rounded white--text' : '' ">
                   <v-list-item-title ><v-icon>mdi-note-text</v-icon> Curso {{item}}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -22,7 +22,7 @@
           </v-card>
         </v-col>
         <v-col cols="12" md="6" lg="8">
-          <v-card class="questions-box white rounded-lg" elevation="0">
+          <v-card class="questions-box white rounded" elevation="0">
             <v-card-title primary-title>
               Temas
             </v-card-title>

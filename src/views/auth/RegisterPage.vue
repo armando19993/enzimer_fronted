@@ -13,7 +13,7 @@
                         md="7"
                         lg="6"
                     >
-                        <v-card class="px-15 py-5 rounded-lg">
+                        <v-card class="px-15 py-5 rounded">
                             <v-card-text>
                                 <div >
                                     <p class="text-center teal--text font-weight-bold text-h5 pt-5">Nuevo usuario</p>
@@ -102,7 +102,7 @@
                         lg="6"
                         v-show="step == 2"
                     >
-                        <v-card class="px-15 py-5 rounded-lg">
+                        <v-card class="px-15 py-5 rounded">
                             <v-card-text>
                                 <div>
                                     <p class="text-center teal--text font-weight-bold text-h5 pt-5">Seleccionar universidad</p>
@@ -145,7 +145,7 @@
                         lg="6"
                         v-show="step == 3"
                     >
-                        <v-card class="px-15 py-5 rounded-lg">
+                        <v-card class="px-15 py-5 rounded">
                             <v-card-text>
                                 <div>
                                     <p class="text-center teal--text font-weight-bold text-h5 pt-5">Seleccionar Carrera</p>
@@ -197,7 +197,7 @@
                                 v-for="item in 4" 
                                 :key="item"
                             >
-                                <v-card class="rounded-lg">
+                                <v-card class="rounded">
                                     <v-card-title class="teal py-10">
                                         <span class="text-h5 mx-auto white--text font-weight-bold">Plan 1 GB</span>
                                     </v-card-title>

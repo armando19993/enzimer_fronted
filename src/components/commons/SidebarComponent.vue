@@ -18,7 +18,7 @@
         nav
         class="mt-16 pt-16"
       >
-        <v-list-item link to="/dashboard" >
+        <v-list-item link to="/" >
           <v-list-item-icon class="app-margin-auto py-10">
             <v-icon>mdi-monitor</v-icon>
           </v-list-item-icon>

@@ -22,7 +22,7 @@
           <v-divider></v-divider>
           <v-row class="mt-10">
             <v-col v-for="item in 10" :key="item" cols="12" md="6" lg="4" class="text-center">
-              <v-card class="rounded-lg" elevation="3">
+              <v-card class="rounded" elevation="3">
                 <v-card-text class="pa-10">
                   <v-icon style="font-size:70px" color="teal">mdi-book-open-page-variant</v-icon>
                   <p class="text-center mt-10">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis explicabo, amet repellendus debitis voluptates ipsam modi sed nobis incidunt minus!</p>

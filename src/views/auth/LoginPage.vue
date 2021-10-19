@@ -10,7 +10,7 @@
                     md="7"
                     lg="6"
                 >
-                    <v-card class="px-15 py-5 rounded-lg">
+                    <v-card class="px-15 py-5 rounded">
                         <v-card-text>
                             <p class="text-center teal--text font-weight-bold text-h5 pt-16">Iniciar Sesion</p>
                             <p class="text-center gray--text caption mb-4">La herramienta perfecta para mejorar tus estudios pre-universitarios</p>

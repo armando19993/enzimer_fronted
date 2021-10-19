@@ -2,14 +2,14 @@
     <v-container fluid>
       <v-row>
         <v-col cols="12" md="5" lg="3" class="questions-box">
-          <v-card dark class="grey darken-4 rounded-lg"  elevation="0">
+          <v-card dark class="grey darken-4 rounded"  elevation="0">
             <!-- Alarma -->
             <v-card-title>
               <p class="mx-auto py-3"><v-icon class="mr-3">mdi-alarm</v-icon> Enzimer</p>
             </v-card-title>
             <!-- Simulacro -->
             <v-card-text class="px-5">
-              <div class="white pa-3 text-center rounded-lg">
+              <div class="white pa-3 text-center rounded">
                 <p class="teal--text title b-inline mb-1">Simulacro - Admisión</p>
                 <span class="caption grey--text">Tiempo transcurrido</span>
                 <h3 class="black--text mt-2">03h : 39m : 17s</h3>
@@ -26,7 +26,7 @@
                       v-for="(item,index) in 20" :key="index"
                       cols="3"
                     >
-                      <p style="width:50px;height:50px" :class="item < 10 ? 'green' : 'red' " class="my-0 text-center py-4 rounded-lg">{{item+1}}</p>
+                      <p style="width:50px;height:50px" :class="item < 10 ? 'green' : 'red' " class="my-0 text-center py-4 rounded">{{item+1}}</p>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -35,7 +35,7 @@
           </v-card>
         </v-col>
         <v-col cols="12" md="8" lg="6" class="mx-auto my-8">
-          <v-card elevation="0" class="rounded-lg">
+          <v-card elevation="0" class="rounded">
             <v-card-text>
               <div class="display-1 text-center teal--text my-5">Flashcard</div>
               <div class="text-center body-1 my-4 px-16"><span class="teal--text">Curso: </span> dolor, sit amet consectetur adipisicing.</div>
@@ -45,19 +45,19 @@
               <div class="display-1 text-center teal--text my-5">Fin de flashcards</div>
               <v-row>
                 <v-col cols="4" class="px-16">
-                  <div class="rounded-lg pa-5 white--text text-center blue">
+                  <div class="rounded pa-5 white--text text-center blue">
                     <span>Fácil</span>
                     <p class="ma-0 display-1 font-weight-black">10</p>
                   </div>
                 </v-col>
                 <v-col cols="4" class="px-16">
-                  <div class="rounded-lg pa-5 white--text text-center orange">
+                  <div class="rounded pa-5 white--text text-center orange">
                     <span>Regular</span>
                     <p class="ma-0 display-1 font-weight-black">10</p>
                   </div>
                 </v-col>
                 <v-col cols="4" class="px-16">
-                  <div class="rounded-lg pa-5 white--text text-center red">
+                  <div class="rounded pa-5 white--text text-center red">
                     <span>Difícil</span>
                     <p class="ma-0 display-1 font-weight-black">10</p>
                   </div>

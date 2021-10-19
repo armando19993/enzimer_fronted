@@ -11,14 +11,14 @@
       </v-app-bar>
       <v-row>
         <v-col cols="12" md="5" lg="3" class="questions-box">
-          <v-card dark class="grey darken-4 rounded-lg"  elevation="0">
+          <v-card dark class="grey darken-4 rounded"  elevation="0">
             <!-- Alarma -->
             <v-card-title>
               <p class="mx-auto py-3"><v-icon class="mr-3">mdi-alarm</v-icon> Enzimer</p>
             </v-card-title>
             <!-- Simulacro -->
             <v-card-text class="px-5">
-              <div class="white pa-3 text-center rounded-lg">
+              <div class="white pa-3 text-center rounded">
                 <p class="teal--text title b-inline mb-1">Simulacro - Admisión</p>
                 <span class="caption grey--text">Tiempo transcurrido</span>
                 <h3 class="black--text mt-2">03h : 39m : 17s</h3>
@@ -35,7 +35,7 @@
                       v-for="(item,index) in 20" :key="index"
                       cols="3"
                     >
-                      <p style="width:50px;height:50px" :class="item < 10 ? 'green' : 'red' " class="my-0 text-center py-4 rounded-lg">{{item+1}}</p>
+                      <p style="width:50px;height:50px" :class="item < 10 ? 'green' : 'red' " class="my-0 text-center py-4 rounded">{{item+1}}</p>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -44,7 +44,7 @@
           </v-card>
         </v-col>
         <v-col cols="12" md="7" lg="9">
-          <v-card class="rounded-lg pa-10" elevation="0">
+          <v-card class="rounded pa-10" elevation="0">
             <v-card-title primary-title>
               <span class="teal--text mr-3">Curso: </span> Historia de perú
             </v-card-title>

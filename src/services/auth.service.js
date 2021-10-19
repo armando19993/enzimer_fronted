@@ -3,18 +3,22 @@ import axios from "axios";
 const ENDPOINT_PATH = "https://reqres.in/api/";
 
 export default {
-    register(user) {
-        return axios.post(ENDPOINT_PATH + "regiser", user);
-    },
     login(user) {
-        return axios.post(ENDPOINT_PATH + "login", user);
+      return axios
+        .post(ENDPOINT_PATH + 'login', user)
+        .then(response => {
+          if (response.data.token) {
+            localStorage.setItem('user', response.data.token);
+          }
+          return response.data;
+        });
+    },
+
+    register(user) {
+      return axios.post(ENDPOINT_PATH + 'register',user);
     },
     logout() {
-      return localStorage.removeItem('user');
-    },
-    setUser(token)
-    {
-      return localStorage.setItem('user', token)
+      localStorage.removeItem('user');
     },
     getUser()
     {

@@ -83,7 +83,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="6" lg="5">
-        <v-card elevation="0" class="rounded-lg pa-5">
+        <v-card elevation="0" class="rounded pa-5">
           <v-card-title primary-title>
             Información de carrera
           </v-card-title>

@@ -8,11 +8,11 @@
         </v-app-bar>
         <v-row>
             <v-col cols="12" md="4" lg="3">
-                <v-card class="white rounded-lg pa-5">    
+                <v-card class="white rounded pa-5">    
                     <div class="my-3 teal--text title">Próximas Fechas</div>
                     <div class="my-3 title">Mañana</div>
                     <v-divider></v-divider>
-                    <div class="rounded-lg teal  text-justify px-5 py-2 white--text my-3" v-for="item in 5" :key="item">
+                    <div class="rounded teal  text-justify px-5 py-2 white--text my-3" v-for="item in 5" :key="item">
                         <div class="my-3 sub-title ">
                             Historia de peru
                         </div>
@@ -21,7 +21,7 @@
                 </v-card>
             </v-col>
             <v-col cols="12" md="8" lg="9">
-                <v-card elevation="0" class="rounded-lg">
+                <v-card elevation="0" class="rounded">
                     <v-card-text class="pa-5">
                         <v-sheet height="64">
                             <v-toolbar
