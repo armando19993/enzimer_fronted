@@ -239,12 +239,6 @@
 import rulesFile from '../../rules/rules'
   export default {
     name:'RegisterPage',
-    mounted()
-    {
-        var scriptTag = document.createElement("script")
-        scriptTag.src = "https://checkout.culqi.com/js/v3"
-        document.getElementsByTagName('head')[0].appendChild(scriptTag)
-    },
     data: () => ({
         /* Formulario */
         valid: false,
@@ -282,6 +276,9 @@ import rulesFile from '../../rules/rules'
         },
     }),
     computed: {
+        loggedIn() {
+            return this.$store.state.auth.status.loggedIn;
+        },
         universitiesSearch() {
             return this.universities.filter((university) => {
                 return university.name.toLowerCase().includes(this.university_filter.toLowerCase());
@@ -290,6 +287,16 @@ import rulesFile from '../../rules/rules'
         passwordConfirmationRule() {
             return () => (this.user.password === this.user.password_confirmation) || 'Contraseñas no coinciden'
         }
+    },
+    mounted()
+    {
+        if (this.loggedIn) {
+            this.$router.push('/');
+        }
+        var scriptTag = document.createElement("script")
+        scriptTag.src = "https://checkout.culqi.com/js/v3"
+        document.getElementsByTagName('head')[0].appendChild(scriptTag)
+
     },
     methods:{
         checkStep1()
@@ -314,6 +321,17 @@ import rulesFile from '../../rules/rules'
         {
             console.log(item)
             this.culqiAPI()
+        },
+        registerRequest()
+        {
+            this.$store.dispatch('auth/register', this.user).then(
+            data => {
+              console.log(data)
+            },
+            error => {
+              console.log(error)
+            }
+          )
         },
         culqiAPI()
         {

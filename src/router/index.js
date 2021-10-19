@@ -1,22 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  /* Dashboard */
   {
     path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    name:'DashboardPage',
+    component: () => import('../views/dashboard/DashboardPage')
   },
   /* Autenticacion */
   {
@@ -28,12 +20,6 @@ const routes = [
     path: '/register',
     name:'Register',
     component: () => import('../views/auth/RegisterPage')
-  },
-  /* Dashboard */
-  {
-    path: '/dashboard',
-    name:'DashboardPage',
-    component: () => import('../views/dashboard/DashboardPage')
   },
   /* Test */
   {
@@ -87,5 +73,19 @@ const router = new VueRouter({
   routes,
   mode: 'history'
 })
+
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/login', '/register'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
+
+  // trying to access a restricted page + not logged in
+  // redirect to login page
+  if (authRequired && !loggedIn) {
+    next('/login');
+  } else {
+    next();
+  }
+});
 
 export default router

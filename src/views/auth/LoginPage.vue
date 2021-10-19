@@ -14,14 +14,20 @@
                         <v-card-text>
                             <p class="text-center teal--text font-weight-bold text-h5 pt-16">Iniciar Sesion</p>
                             <p class="text-center gray--text caption mb-4">La herramienta perfecta para mejorar tus estudios pre-universitarios</p>
-                            <v-form v-model="valid">
+                            <v-form
+                                v-model="valid"
+                                @submit.prevent="requestLogin"
+                            >
                                 <!-- inputs -->
                                 <v-text-field
                                     class="my-4"
                                     outlined
                                     color="teal"
-                                    name="login.username"
-                                    :rules="emailRules"
+                                    name="login.email"
+                                    :disabled="loading"
+                                    :loading="loading"
+                                    :rules="validations.email"
+                                    v-model="login.email"
                                     label="Correo electronico"
                                     required
                                 ></v-text-field>
@@ -30,13 +36,18 @@
                                     outlined
                                     color="teal"
                                     name="login.password"
-                                    :rules="passwordRules"
+                                    v-model="login.password"
+                                    :rules="validations.password"
                                     label="Contraseña"
                                     required
+                                    :disabled="loading"
+                                    :loading="loading"
+                                    type="password"
                                 ></v-text-field>
                                 <v-checkbox
                                     class="gray--text mt-n2 float-left"
                                     color="teal"
+                                    :loading="loading"
                                     v-model="login.remember"
                                 ></v-checkbox>
                                 <span class="gray--text caption mb-4 float-left">Recordar cuenta</span>
@@ -45,7 +56,10 @@
                                 <v-btn
                                     block
                                     color="teal"
+                                    :loading="loading"
                                     large
+                                    :disabled="!valid"
+                                    @click="requestLogin"
                                 >
                                     <span class="text-capitalize white--text">Iniciar Sesión</span>
                                 </v-btn>
@@ -59,6 +73,7 @@
                                     block
                                     color="blue darken-4"
                                     large
+                                    :loading="loading"
                                     class="my-3"
                                 >
                                     <span class="text-capitalize white--text">Facebook</span>
@@ -67,6 +82,7 @@
                                     block
                                     color="red darken-3"
                                     large
+                                    :loading="loading"
                                     class="my-3"
                                 >
                                     <span class="text-capitalize white--text">Google</span>
@@ -88,26 +104,57 @@
 </template>
 
 <script>
-  export default {
-    name:'LoginPage',
-    data: () => ({
-        /* Formulario */
-        valid: false,
-        /* Datos Login */
-        login:{
-            email:null,
-            password:null
+    import rulesFile from '@/rules/rules'
+    export default {
+        name:'LoginPage',
+        /* Data */
+        data: () => ({
+            /* Formulario */
+            valid: false,
+            loading:false,
+            /* Datos Login */
+            login:{
+                email:"eve.holt@reqres.in",
+                password:"cityslicka",
+                remember:null,
+            },
+            /* Reglas Campos */
+            validations: {
+                email:[rulesFile.email()],
+                password:[rulesFile.required()],
+            },
+        }),
+        computed: {
+            loggedIn() {
+                return this.$store.state.auth.status.loggedIn;
+            }
         },
-        /* Reglas Campos */
-        passwordRules: [
-            v => !!v || 'Contraseña requerida',
-        ],
-        emailRules: [
-            v => !!v || 'El Correo es requerido',
-            v => /.+@.+/.test(v) || 'No es una direccion de correo valido',
-        ],
-    }),
-  }
+        created() {
+            if (this.loggedIn) {
+                this.$router.push('/');
+            }
+        },
+        /* Metodos */
+        methods: {
+            async requestLogin() {
+                this.loading = true
+                try {
+                    this.$store.dispatch('auth/login', this.login).then(
+                        () => {
+                            this.$router.push('/');
+                        },
+                        error => {
+                            console.log(error)
+                        }
+                    )
+                    
+                } catch (error) {
+                    alert(error)
+                }
+                this.loading = false
+            },
+        }
+    }
 </script>
 
 <style scoped>

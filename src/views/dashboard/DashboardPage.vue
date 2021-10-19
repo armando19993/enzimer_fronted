@@ -7,14 +7,28 @@
       </h2>
       <v-spacer></v-spacer>
       <div>Hola, Angel</div>
-      <v-btn 
-          color="teal"
-          icon
-          outlined
-          class="ml-3"
-        >
-          <v-icon>mdi-account</v-icon>
-        </v-btn>
+      <v-menu
+        left
+        bottom
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn 
+            color="teal"
+            icon
+            outlined
+            v-bind="attrs"
+            v-on="on"
+            class="ml-3"
+          >
+            <v-icon>mdi-account</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item @click="logOut">
+            <v-list-item-title>Cerrar Sesión</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
     <v-row>
       <v-col cols="12" md="6">
@@ -133,5 +147,12 @@
         data: () => ({
           
         }),
+        methods:
+        {
+          logOut() {
+            this.$store.dispatch('auth/logout');
+            this.$router.push('/login');
+          }
+        }
     }
 </script>
