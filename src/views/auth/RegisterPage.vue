@@ -25,7 +25,7 @@
                                         label="Nombres"
                                         required:ripple="false"
                                         :rules="validations.text"
-                                        v-model="user.firstname"
+                                        v-model="user.name"
                                     ></v-text-field>
                                     <v-text-field
                                         class="my-4"
@@ -34,7 +34,7 @@
                                         label="Apellidos"
                                         required
                                         :rules="validations.text"
-                                        v-model="user.lastname"
+                                        v-model="user.last_name"
                                     ></v-text-field>
                                     <v-text-field
                                         class="my-4"
@@ -113,7 +113,7 @@
                                         outlined
                                         color="teal"
                                     ></v-text-field>
-                                    <v-radio-group v-model="user.university" class="universiti-div mt-2 mx-2">
+                                    <v-radio-group v-model="user.id_universidad" class="universiti-div ma-2 mx-2 pa-2">
                                         <v-radio
                                             color="teal"
                                             class="my-4" 
@@ -129,7 +129,7 @@
                                         color="teal"
                                         large
                                         class="my-2"
-                                        :disabled="!user.university"
+                                        :disabled="!user.id_universidad"
                                         @click="checkStep2"
                                     >
                                             <span class="text-capitalize white--text" >Continuar</span>
@@ -151,7 +151,7 @@
                                     <p class="text-center teal--text font-weight-bold text-h5 pt-5">Seleccionar Carrera</p>
                                     <p class="text-center gray--text caption mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                     <div class="universiti-div">
-                                        <v-radio-group v-model="user.career" class="mx-2 mt-2">
+                                        <v-radio-group v-model="user.id_carera" class="mx-2 mt-2">
                                             <div 
                                                 v-for="(item,index) in 4"
                                                 :key="index"
@@ -175,7 +175,7 @@
                                         color="teal"
                                         large
                                         class="my-2"
-                                        :disabled="!user.career"
+                                        :disabled="!user.id_carera"
                                         @click="checkStep3"
                                     >
                                             <span class="text-capitalize white--text" >Continuar</span>
@@ -257,15 +257,15 @@ import rulesFile from '../../rules/rules'
         university_filter:"",
         /* Datos usuario */
         user:{
-            firstname:"",
-            lastname:"",
+            name:"",
+            last_name:"",
             email:"",
             phone:"",
             password:"",
             password_confirmation:"",
             subscribe:"",
-            university:null,
-            career:null
+            id_universidad:null,
+            id_carera:null
         },
         password_check:true,
         /* Reglas Campos */
