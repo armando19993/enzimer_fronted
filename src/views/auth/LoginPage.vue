@@ -107,6 +107,13 @@
     import rulesFile from '@/rules/rules'
     export default {
         name:'LoginPage',
+        mounted()
+        {
+            if(this.loggedIn)
+            {
+                this.$router.push('/')
+            }
+        },
         /* Data */
         data: () => ({
             /* Formulario */
@@ -114,8 +121,8 @@
             loading:false,
             /* Datos Login */
             login:{
-                email:"eve.holt@reqres.in",
-                password:"cityslicka",
+                email:"",
+                password:"",
                 remember:null,
             },
             /* Reglas Campos */
@@ -141,10 +148,17 @@
                 try {
                     this.$store.dispatch('auth/login', this.login).then(
                         () => {
+                            this.$store.state.alert = {
+                                                        active: true,
+                                                        color: "success",
+                                                        message: 'Bienvenido: ' + this.$store.state.auth.user.name + ' ' + this.$store.state.auth.user.last_name}
                             this.$router.push('/');
                         },
                         error => {
-                            console.log(error)
+                            this.$store.state.alert = {
+                                                        active: true,
+                                                        color: "error",
+                                                        message: error }
                         }
                     )
                     

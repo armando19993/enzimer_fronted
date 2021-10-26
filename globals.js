@@ -1,3 +1,3 @@
 export default {
-    APP_ENDPOINT: "https://reqres.in/api/"  
+    APP_ENDPOINT: "http://127.0.0.1:8000/api/v1/"  
 }

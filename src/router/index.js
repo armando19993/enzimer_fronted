@@ -21,6 +21,17 @@ const routes = [
     name:'Register',
     component: () => import('../views/auth/RegisterPage')
   },
+  /* Planes */
+  {
+    path: '/planes',
+    name:'Planes',
+    component: () => import('../views/planes/IndexPlanesPage')
+  },
+  {
+    path: '/planes/:payment/payments/',
+    name:'PlanesPayments',
+    component: () => import('../views/planes/PaymentsPage')
+  },
   /* Test */
   {
     path: '/tests',
@@ -77,7 +88,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const publicPages = ['/login', '/register'];
   const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('user');
+  const loggedIn = JSON.parse(localStorage.getItem('user'));
   // trying to access a restricted page + not logged in
   // redirect to login page
   if (authRequired && !loggedIn) {

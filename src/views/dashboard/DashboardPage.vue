@@ -6,7 +6,7 @@
         Dashboard
       </h2>
       <v-spacer></v-spacer>
-      <div>Hola, Angel</div>
+      <div>Hola, {{username}}</div>
       <v-menu
         left
         bottom
@@ -153,6 +153,12 @@
             this.$store.dispatch('auth/logout');
             this.$router.push('/login');
           }
+        },
+        computed:
+        {
+          username() {
+            return this.$store.state.auth.user.name;
+          },
         }
     }
 </script>

@@ -21,6 +21,8 @@
                                     <v-text-field
                                         class="my-4"
                                         outlined
+                                        :loading="loading"
+                                        :disabled="loading"
                                         color="teal"
                                         label="Nombres"
                                         required:ripple="false"
@@ -33,6 +35,8 @@
                                         color="teal"
                                         label="Apellidos"
                                         required
+                                        :loading="loading"
+                                        :disabled="loading"
                                         :rules="validations.text"
                                         v-model="user.last_name"
                                     ></v-text-field>
@@ -40,6 +44,8 @@
                                         class="my-4"
                                         outlined
                                         color="teal"
+                                        :loading="loading"
+                                        :disabled="loading"
                                         :rules="validations.email"
                                         label="Correo"
                                         required
@@ -49,6 +55,8 @@
                                         class="my-4"
                                         outlined
                                         color="teal"
+                                        :loading="loading"
+                                        :disabled="loading"
                                         label="Celular"
                                         required
                                         :rules="validations.text"
@@ -58,6 +66,8 @@
                                         class="my-4"
                                         outlined
                                         color="teal"
+                                        :loading="loading"
+                                        :disabled="loading"
                                         :rules="validations.password"
                                         label="Contraseña"
                                         type="password"
@@ -68,6 +78,8 @@
                                         class="my-4"
                                         outlined
                                         color="teal"
+                                        :loading="loading"
+                                        :disabled="loading"
                                         :rules="[passwordConfirmationRule]"
                                         label="Confirmar contraseña"
                                         required
@@ -77,6 +89,8 @@
                                     <v-checkbox
                                         class="gray--text mt-n2 float-left"
                                         color="teal"
+                                        :loading="loading"
+                                        :disabled="loading"
                                         v-model="user.subscribe"
                                     ></v-checkbox>
                                     <p class="gray--text caption mb-4 float-left">Quieres recibir ofertas y notificaciones de parte de <span class="teal--text caption mb-4 font-weight-medium">ENZIMER</span></p>
@@ -85,6 +99,7 @@
                                         block
                                         color="teal"
                                         large
+                                        :loading="loading"
                                         class="my-2"
                                         :disabled="!valid"
                                         @click="checkStep1"
@@ -119,8 +134,10 @@
                                             class="my-4" 
                                             v-for="(item,index) in universitiesSearch"
                                             :key="index"
-                                            :label="item.name"
-                                            :value="item.name"
+                                            :label="item.universidad"
+                                            :value="item.id"
+                                            :loading="loading"
+                                        :disabled="loading"
                                         ></v-radio>
                                     </v-radio-group>
                                     <!-- link auxiliares y boton-->
@@ -129,6 +146,7 @@
                                         color="teal"
                                         large
                                         class="my-2"
+                                        :loading="loading"
                                         :disabled="!user.id_universidad"
                                         @click="checkStep2"
                                     >
@@ -151,20 +169,22 @@
                                     <p class="text-center teal--text font-weight-bold text-h5 pt-5">Seleccionar Carrera</p>
                                     <p class="text-center gray--text caption mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                     <div class="universiti-div">
-                                        <v-radio-group v-model="user.id_carera" class="mx-2 mt-2">
+                                        <v-radio-group v-model="user.id_carrera" class="mx-2 mt-2">
                                             <div 
-                                                v-for="(item,index) in 4"
+                                                v-for="(area,index) in areas"
                                                 :key="index"
                                             >
-                                                <p class="h6 teal--text font-weight-bold"><v-icon large color="teal">mdi-bank</v-icon> Carrera {{index}}</p>
+                                                <p class="h6 teal--text font-weight-bold"><v-icon large color="teal">mdi-bank</v-icon> {{area.area}}</p>
                                                 <hr class="gray">
                                                 <v-radio
                                                     color="teal"
                                                     class="my-4" 
-                                                    v-for="(item,index) in 4"
+                                                    :loading="loading"
+                                                    :disabled="loading"
+                                                    v-for="(carrera,index) in area.carreras"
                                                     :key="index"
-                                                    :label="'carrera ' + index"
-                                                    :value="item.name"
+                                                    :label="carrera.carrera"
+                                                    :value="carrera.id"
                                                 ></v-radio>
                                             </div>
                                         </v-radio-group>
@@ -175,7 +195,8 @@
                                         color="teal"
                                         large
                                         class="my-2"
-                                        :disabled="!user.id_carera"
+                                        :loading="loading"
+                                        :disabled="!user.id_carrera"
                                         @click="checkStep3"
                                     >
                                             <span class="text-capitalize white--text" >Continuar</span>
@@ -237,35 +258,38 @@
 
 <script>
 import rulesFile from '../../rules/rules'
+import UniversityService from '@/services/universities.service'
+
   export default {
     name:'RegisterPage',
+    mounted()
+        {
+            if(this.loggedIn)
+            {
+                this.$router.push('/')
+            }
+        },
     data: () => ({
         /* Formulario */
         valid: false,
         step:1,
+        loading:false,
         /* Universidades */
-        universities:[
-            {name : 'universidad1'},
-            {name : 'universidad2'},
-            {name : 'universidad3'},
-            {name : 'universidad4'},
-            {name : 'universidad5'},
-            {name : 'universidad6'},
-            {name : 'universidad7'},
-            {name : 'universidad8'}
-        ],
+        universities:[],
         university_filter:"",
+        /* Carreras */
+        areas:[],
         /* Datos usuario */
         user:{
-            name:"",
-            last_name:"",
-            email:"",
-            phone:"",
-            password:"",
-            password_confirmation:"",
+            name:"juan",
+            last_name:"perez",
+            email:"juan@gmail.com",
+            phone:"12731827381",
+            password:"26153290",
+            password_confirmation:"26153290",
             subscribe:"",
             id_universidad:null,
-            id_carera:null
+            id_carrera:null
         },
         password_check:true,
         /* Reglas Campos */
@@ -281,70 +305,85 @@ import rulesFile from '../../rules/rules'
         },
         universitiesSearch() {
             return this.universities.filter((university) => {
-                return university.name.toLowerCase().includes(this.university_filter.toLowerCase());
-            });
+                return university.universidad.toLowerCase().includes(this.university_filter.toLowerCase())
+            })
         },
         passwordConfirmationRule() {
             return () => (this.user.password === this.user.password_confirmation) || 'Contraseñas no coinciden'
         }
     },
-    mounted()
-    {
-        if (this.loggedIn) {
-            this.$router.push('/');
-        }
-        var scriptTag = document.createElement("script")
-        scriptTag.src = "https://checkout.culqi.com/js/v3"
-        document.getElementsByTagName('head')[0].appendChild(scriptTag)
-
-    },
     methods:{
         checkStep1()
         {
             if(this.valid){
+                this.loading = true
+                UniversityService.getAll().then(
+                    response => {
+                        this.universities = response.data.data
+                    },
+                    error => {
+                        this.$store.state.alert = {
+                                                        active: true,
+                                                        color: "error",
+                                                        message: error }
+                    }
+                )
                 this.step = 2
+                this.loading = false
             } 
         },
         checkStep2()
         {
-            if(this.user.universities){
+            if(this.user.id_universidad){
+                if(this.valid){
+                    this.loading = true
+                    UniversityService.universityAreas(this.user.id_universidad).then(
+                        response => {
+                            this.areas = response.data.data
+                        },
+                        error => {
+                            this.$store.state.alert = {
+                                                            active: true,
+                                                            color: "error",
+                                                            message: error }
+                        }
+                    )
+                    this.step = 2
+                    this.loading = false
+                } 
                 this.step = 3
             } 
         },
         checkStep3()
         {
-            if(this.user.career){
-                this.step = 4
+            if(this.user.id_carrera){
+                this.registerRequest()
             } 
-        },
-        selectPlan(item)
-        {
-            console.log(item)
-            this.culqiAPI()
         },
         registerRequest()
         {
-            this.$store.dispatch('auth/register', this.user).then(
-            data => {
-              console.log(data)
-            },
-            error => {
-              console.log(error)
+            this.loading = true
+            try {
+                this.$store.dispatch('auth/register', this.user).then(
+                    () => {
+                        this.$store.state.alert = {
+                                                    active: true,
+                                                    color: "success",
+                                                    message: 'Registro realizado con exito: ' + this.$store.state.auth.user.name + ' ' + this.$store.state.auth.user.last_name}
+                        this.$router.push('/planes');
+                    },
+                    error => {
+                        this.$store.state.alert = {
+                                                    active: true,
+                                                    color: "error",
+                                                    message: error }
+                    }
+                )
+                
+            } catch (error) {
+                alert(error)
             }
-          )
-        },
-        culqiAPI()
-        {
-            // Configura tu llave pública
-            window.Culqi.publicKey = "sk_test_d8d617d26c11f288"
-            // Configura tu Culqi Checkout
-            window.Culqi.settings({
-                title: 'Culqi Pago Plan',
-                currency: 'PEN',
-                description: 'Pruebas Angel',
-                amount: 5000
-            });
-            window.Culqi.open()
+            this.loading = false
         }
     }
   }

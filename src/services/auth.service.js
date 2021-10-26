@@ -8,20 +8,24 @@ export default {
       return axios
         .post(ENDPOINT_PATH + 'login', user)
         .then(response => {
-          if (response.data.token) {
-            localStorage.setItem('user', response.data.token)
+          if (response.data.data) {
+            localStorage.setItem('user', JSON.stringify(response.data.data[0]))
+            return response.data.data[0]
+          }else{
+            throw response.data.error
           }
-          return response.data;
         })
     },
 
     register(user) {
-      return axios.post(ENDPOINT_PATH + 'register',user)
+      return axios.post(ENDPOINT_PATH + 'registro',user)
         .then(response => {
-          if (response.data.token) {
-            localStorage.setItem('user', response.data.token)
+          if (response.data.user) {
+            localStorage.setItem('user', JSON.stringify(response.data.user))
+            return response.data.user
+          }else{
+            throw response.data.error
           }
-          return response.data;
         })
     },
     logout() {
@@ -29,6 +33,6 @@ export default {
     },
     getUser()
     {
-      return localStorage.getItem('user')
+      return JSON.parse(localStorage.getItem('user'))
     }
 }
